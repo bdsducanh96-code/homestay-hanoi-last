@@ -7,6 +7,9 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 <style>
+html {
+  scroll-behavior: smooth;
+}
 :root {
   --accent: #D47E66; 
   --accent-hover: #BD6A54;
@@ -550,6 +553,15 @@ document.getElementById('copyAndZaloBtn').addEventListener('click', async () => 
     document.execCommand('copy'); 
   }
   window.open("https://zalo.me/" + ZALO, "_blank");
+});
+  // Bắt sự kiện khi click vào nút Zalo nổi
+document.getElementById('floatingZaloBtn').addEventListener('click', function() {
+  // Đợi 500ms (nửa giây) để trang trượt xuống form xong rồi mới hiện thông báo
+  setTimeout(function() {
+    alert("Vui lòng điền thông tin vào form dưới đây để chúng tôi tư vấn chi tiết cho bạn nhé!");
+    // Tự động trỏ chuột vào ô nhập Tên để khách hàng tiện gõ luôn
+    document.getElementById('name').focus(); 
+  }, 500);
 });
 </script>
 </body>
