@@ -554,15 +554,35 @@ document.getElementById('copyAndZaloBtn').addEventListener('click', async () => 
   }
   window.open("https://zalo.me/" + ZALO, "_blank");
 });
-  // Bắt sự kiện khi click vào nút Zalo nổi
-document.getElementById('floatingZaloBtn').addEventListener('click', function() {
-  // Đợi 500ms (nửa giây) để trang trượt xuống form xong rồi mới hiện thông báo
-  setTimeout(function() {
-    alert("Vui lòng điền thông tin vào form dưới đây để chúng tôi tư vấn chi tiết cho bạn nhé!");
-    // Tự động trỏ chuột vào ô nhập Tên để khách hàng tiện gõ luôn
-    document.getElementById('name').focus(); 
-  }, 500);
+
+// Đảm bảo toàn bộ HTML đã tải xong mới chạy code
+document.addEventListener("DOMContentLoaded", function() {
+    
+    const zaloBtn = document.getElementById('floatingZaloBtn');
+    const nameInput = document.getElementById('name');
+    const targetForm = document.getElementById('form');
+
+    if (zaloBtn) {
+        zaloBtn.addEventListener('click', function(e) {
+            // 1. Ngăn không cho trình duyệt nhảy vèo lên đầu trang/xuống dưới theo cách mặc định
+            e.preventDefault();
+
+            // 2. Cuộn xuống form một cách mượt mà bằng JS
+            if (targetForm) {
+                targetForm.scrollIntoView({ behavior: 'smooth' });
+            }
+
+            // 3. Đợi cuộn xong thì hiện thông báo và trỏ chuột
+            setTimeout(function() {
+                alert("Vui lòng điền thông tin vào form dưới đây để chúng tôi tư vấn chi tiết cho bạn nhé!");
+                if (nameInput) {
+                    nameInput.focus();
+                }
+            }, 800); // Tăng lên 800ms để chắc chắn đã cuộn xong
+        });
+    }
 });
+  
 </script>
 </body>
 </html>
